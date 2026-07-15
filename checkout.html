@@ -18,7 +18,7 @@
       position: relative;
     }
     
-    /* Dedicated Checkout Meshes */
+    /* Dedicated Checkout Meshes & Floating 3D Shapes */
     .checkout-mesh-1, .checkout-mesh-2 {
       position: absolute; border-radius: 50%; filter: blur(120px); z-index: -1;
       opacity: 0; pointer-events: none;
@@ -31,6 +31,37 @@
       width: 600px; height: 600px; background: rgba(14, 165, 233, 0.2);
       bottom: -100px; right: -100px; animation: floatMeshC 12s infinite alternate-reverse ease-in-out;
     }
+    
+    /* True 3D Floating Elements */
+    .floating-3d-scene {
+      position: absolute;
+      top: 20%; right: -15%;
+      width: 400px; height: 400px;
+      perspective: 1000px;
+      z-index: 0;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .shape-3d {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(14, 165, 233, 0.5));
+      border-radius: 30px;
+      position: absolute;
+      transform-style: preserve-3d;
+      animation: spin3D 20s infinite linear;
+      box-shadow: 0 0 50px rgba(124, 58, 237, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .shape-3d:nth-child(1) { top: 10%; left: 10%; animation-duration: 25s; }
+    .shape-3d:nth-child(2) { bottom: 20%; right: 20%; width: 150px; height: 150px; border-radius: 50%; animation-duration: 18s; animation-direction: reverse; background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(124, 58, 237, 0.5)); }
+    .shape-3d:nth-child(3) { top: 50%; left: 50%; width: 80px; height: 80px; transform: translateZ(-100px); animation-duration: 15s; }
+    
+    @keyframes spin3D {
+      0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translateZ(50px); }
+    }
+    
     @keyframes floatMeshC {
       0% { transform: translate(0, 0) scale(1); }
       100% { transform: translate(50px, 80px) scale(1.1); }
@@ -54,26 +85,39 @@
     }
     
     /* Left Column UI */
-    .summary-col { opacity: 0; }
+    .summary-col { opacity: 0; z-index: 2; position: relative; }
     .summary-title { font-family: 'Manrope', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 40px; background: var(--text-gradient); -webkit-background-clip: text; color: transparent; }
     
+    .card-3d-wrapper {
+      perspective: 1500px;
+      margin-bottom: 40px;
+    }
+
     .premium-card-mockup {
       width: 100%; height: 220px; border-radius: 20px; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
       backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
       border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
-      padding: 24px 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
-      margin-bottom: 40px; transform-style: preserve-3d; transition: transform 0.2s ease-out, box-shadow 0.4s ease;
+      padding: 24px 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative;
+      transform-style: preserve-3d; transition: transform 0.1s ease-out, box-shadow 0.4s ease;
     }
     .premium-card-mockup::before {
       content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
       background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2) 0%, transparent 60%);
-      transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s; pointer-events: none;
+      transform: translate(-50%, -50%) translateZ(-1px); opacity: 0; transition: opacity 0.5s; pointer-events: none;
     }
     .premium-card-mockup:hover::before { opacity: 1; }
     
-    .card-chip { width: 45px; height: 35px; background: linear-gradient(135deg, #facc15, #a16207); border-radius: 6px; box-shadow: inset 0 0 5px rgba(0,0,0,0.5); }
-    .card-num-display { font-size: 24px; font-family: monospace; letter-spacing: 3px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-top: auto; margin-bottom: 20px;}
-    .card-btm { display: flex; justify-content: space-between; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    /* True 3D layered elements inside the card */
+    .card-chip { width: 45px; height: 35px; background: linear-gradient(135deg, #facc15, #a16207); border-radius: 6px; box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.2); transform: translateZ(30px); }
+    .card-num-display { font-size: 24px; font-family: monospace; letter-spacing: 3px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5); margin-top: auto; margin-bottom: 20px; transform: translateZ(40px); }
+    .card-btm { display: flex; justify-content: space-between; color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transform: translateZ(25px); text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    
+    /* Glowing orb behind the card */
+    .card-glow-bg {
+      position: absolute; top: 50%; left: 50%; width: 250px; height: 250px; background: var(--primary);
+      filter: blur(80px); transform: translate(-50%, -50%) translateZ(-50px); opacity: 0; transition: opacity 0.4s;
+    }
+    .card-3d-wrapper:hover .card-glow-bg { opacity: 0.5; }
     
     .summary-item { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 500; }
     .summary-item strong { color: var(--text-main); font-weight: 600; font-size: 18px; }
@@ -113,6 +157,12 @@
 
   <div class="checkout-mesh-1"></div>
   <div class="checkout-mesh-2"></div>
+  
+  <div class="floating-3d-scene">
+    <div class="shape-3d"></div>
+    <div class="shape-3d"></div>
+    <div class="shape-3d"></div>
+  </div>
 
   <nav class="checkout-nav">
     <a href="index.html" class="nav-brand">
@@ -130,12 +180,15 @@
     <div class="summary-col">
       <h2 class="summary-title stagger-item-l" data-i18n="checkoutSummary">Sifarişin Xülasəsi</h2>
       
-      <div class="premium-card-mockup stagger-item-l" id="card-mockup">
-        <div class="card-chip"></div>
-        <div class="card-num-display" id="mock-num">**** **** **** ****</div>
-        <div class="card-btm">
-          <span id="mock-name">AD SOYAD</span>
-          <span id="mock-exp">MM/YY</span>
+      <div class="card-3d-wrapper stagger-item-l" id="card-wrapper">
+        <div class="premium-card-mockup" id="card-mockup">
+          <div class="card-glow-bg"></div>
+          <div class="card-chip"></div>
+          <div class="card-num-display" id="mock-num">**** **** **** ****</div>
+          <div class="card-btm">
+            <span id="mock-name">AD SOYAD</span>
+            <span id="mock-exp">MM/YY</span>
+          </div>
         </div>
       </div>
       
@@ -281,16 +334,23 @@
       document.getElementById('mock-exp').textContent = v || 'MM/YY';
     });
 
-    // 3D Mouse Tracking for Card Mockup
+    // 3D Mouse Tracking for Card Mockup with True Depth
     const leftCol = document.querySelector('.summary-col');
+    const wrapper = document.getElementById('card-wrapper');
+    const mockup = document.getElementById('card-mockup');
+    
     leftCol.addEventListener('mousemove', e => {
-      const rect = mockup.getBoundingClientRect();
+      const rect = wrapper.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width/2;
       const y = e.clientY - rect.top - rect.height/2;
-      mockup.style.transform = `perspective(1000px) rotateX(${-y/15}deg) rotateY(${x/15}deg) scale3d(1.03, 1.03, 1.03)`;
+      mockup.style.transform = `rotateX(${-y/10}deg) rotateY(${x/10}deg) scale3d(1.05, 1.05, 1.05)`;
     });
     leftCol.addEventListener('mouseleave', () => {
-      mockup.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      mockup.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      mockup.style.transition = `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease`;
+    });
+    leftCol.addEventListener('mouseenter', () => {
+      mockup.style.transition = `transform 0.1s ease-out, box-shadow 0.4s ease`;
     });
 
     // Payment Logic
