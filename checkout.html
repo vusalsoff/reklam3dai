@@ -151,6 +151,23 @@
     
     /* Form Stagger Init */
     .stagger-item, .stagger-item-l { opacity: 0; transform: translateY(20px); }
+    
+    /* Responsive Overrides */
+    @media (max-width: 900px) {
+      .checkout-container { flex-direction: column; padding: 0 20px; gap: 40px; margin: 20px auto; }
+      .summary-col, .payment-col { min-width: 100%; padding: 30px 20px; }
+      .floating-3d-scene { display: none; } /* Hide complex 3D on small devices to prevent overflow/lag */
+      .premium-card-mockup { padding: 20px; height: 180px; }
+      .card-num-display { font-size: 18px; margin-bottom: 10px; }
+      .card-btm { font-size: 12px; }
+      .checkout-mesh-1, .checkout-mesh-2 { width: 400px; height: 400px; }
+    }
+    @media (max-width: 600px) {
+      .row { flex-direction: column; gap: 0; }
+      .summary-title, .payment-title { font-size: 24px; margin-bottom: 24px; }
+      .summary-total span:last-child { font-size: 28px; }
+      .btn-pay { font-size: 16px; padding: 18px; }
+    }
   </style>
 </head>
 <body class="dark-theme">
