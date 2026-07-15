@@ -1,0 +1,185 @@
+const translations = {
+  az: {
+    nav_home: "Ana Səhifə",
+    nav_about: "Haqqımızda",
+    nav_products: "Məhsullar",
+    nav_pricing: "Qiymətlər",
+    nav_contact: "Əlaqə",
+    nav_login: "Login",
+    nav_register: "Register",
+    hero_title: "Süni intellekt ilə <br><span class='text-gradient'>daha sərfəli və effektiv reklam</span>",
+    hero_sub: "Mətn, şəkil və video reklamlarını bir platformada yarat. Aylıq kredit sistemi ilə xərclərini tam idarə et.",
+    hero_btn: "İndi Başla",
+    modules_title: "Tam Reklam Ekosistemi",
+    modules_desc: "Kampaniya ideyasından hazır kreativə qədər hər addımı süni intellekt sizinlə birgə atır.",
+    dash_title: "AI Chatbot Modulu",
+    dash_desc: "Hədəf auditoriya, büdcə tövsiyəsi, reklam mətni və platforma seçimi — sadəcə yazışaraq saniyələr içində əldə et.",
+    dash_user_msg: '"İstanbul mətbəxi olan restoran üçün Instagram reklamı mətni yaz."',
+    dash_ai_msg: "Əlbəttə! Budur restoranınız üçün 3 fərqli Instagram reklam mətni və hədəf auditoriya təklifi...",
+    dash_cost: "-1 Kredit",
+    media_img_title: "AI Şəkil Generatoru",
+    media_img_desc: "Mətn təsvirinizdən sosial şəbəkələr üçün yüksək keyfiyyətli reklam vizualları yaradın.",
+    media_img_cost: "1 Image = 2 Credits",
+    media_vid_title: "AI Video Generatoru",
+    media_vid_desc: "Tiktok, Reels və Shorts üçün qısa, diqqətçəkən video reklamları asanlıqla generasiya edin.",
+    media_vid_cost: "1 Video = 10 Credits",
+    mockup_title: "Mobil təcrübənin zirvəsi",
+    mockup_desc: "Telefonunuzda süni intellektin necə video və fotolar generasiya etdiyini canlı izləyin.",
+    mockup_user: "Futuristik saat reklamı üçün video yarat.",
+    about_title: "Haqqımızda",
+    about_p1: "Bizim missiyamız, kiçik və orta bizneslər üçün rəqəmsal reklamı sadələşdirmək və demokratikləşdirməkdir.",
+    about_p2: "ReklamAI olaraq, bahalı marketinq komandalarına və mürəkkəb interfeysli platformalara ehtiyacı aradan qaldırırıq. İrəli səviyyə süni intellekt avtomatlaşdırması ilə hər kəs qlobal standartlara cavab verən, effektiv reklam kampaniyaları yarada bilər.",
+    pricing_title: "Məqsədinizə uyğun paket",
+    pricing_desc: "Gizli xərclər yoxdur. Ehtiyacınıza uyğun olan planı seçin və böyüməyə başlayın.",
+    price_basic_desc: "Yeni başlayanlar və kiçik həcmli mətn/şəkil reklam kampaniyaları üçün mükəmməl seçimdir.",
+    price_std_desc: "Yüksək həcmli video reklam istehsalını açır. Sürətlə böyüyən bizneslər üçün ideal.",
+    price_prem_desc: "Kütləvi məzmun istehsalı və bir neçə müştəri idarə edən marketinq agentlikləri üçün.",
+    price_btn: "Planı Seç",
+    review_title: "Müştərilərimiz nə deyir?",
+    review_1: '"ReklamAI hesabına komandamızın məzmun yaratma sürəti 3 dəfə artdı. Xüsusilə video generasiyası çox uğurludur və qiymətlər agentliklər üçün çox sərfəlidir."',
+    review_1_job: "Marketinq Direktoru",
+    review_2: '"Kredit sisteminin şəffaflığı çox xoşuma gəlir. Nəyə nə qədər ödədiyimi dəqiq bilirəm və kiçik büdcə ilə belə peşəkar görünən reklamlar hazırlaya bilirəm."',
+    review_2_job: "Kiçik Biznes Sahibi",
+    fb_title: "Öz rəyinizi bildirin",
+    fb_desc: "Sizin fikirləriniz platformamızı inkişaf etdirmək üçün ən vacib amildir.",
+    fb_btn: "Rəyi Göndər",
+    footer_text: "Gələcəyin rəqəmsal reklam texnologiyaları. Süni intellektin gücü və mükəmməl vizuallığın vəhdəti.",
+    footer_links: "Linklər",
+    footer_legal: "Hüquqi",
+    footer_contact: "Bizə yazın",
+    login_title: "Daxil ol",
+    login_sub: "Platformaya giriş edərək davam edin",
+    login_btn: "Giriş et"
+  },
+  en: {
+    nav_home: "Home",
+    nav_about: "About",
+    nav_products: "Products",
+    nav_pricing: "Pricing",
+    nav_contact: "Contact",
+    nav_login: "Login",
+    nav_register: "Register",
+    hero_title: "More profitable and effective advertising <br><span class='text-gradient'>with Artificial Intelligence</span>",
+    hero_sub: "Create text, image, and video ads on one platform. Fully manage your costs with a monthly credit system.",
+    hero_btn: "Start Now",
+    modules_title: "Complete Advertising Ecosystem",
+    modules_desc: "From campaign idea to ready creative, AI takes every step with you.",
+    dash_title: "AI Chatbot Module",
+    dash_desc: "Target audience, budget recommendations, ad copy, and platform selection — get it in seconds just by chatting.",
+    dash_user_msg: '"Write an Instagram ad copy for a restaurant with Istanbul cuisine."',
+    dash_ai_msg: "Sure! Here are 3 different Instagram ad copies and target audience suggestions for your restaurant...",
+    dash_cost: "-1 Credit",
+    media_img_title: "AI Image Generator",
+    media_img_desc: "Create high-quality ad visuals for social networks from your text description.",
+    media_img_cost: "1 Image = 2 Credits",
+    media_vid_title: "AI Video Generator",
+    media_vid_desc: "Easily generate short, catchy video ads for Tiktok, Reels, and Shorts.",
+    media_vid_cost: "1 Video = 10 Credits",
+    mockup_title: "The peak of mobile experience",
+    mockup_desc: "Watch live as AI generates videos and photos on your phone.",
+    mockup_user: "Create a video for a futuristic watch ad.",
+    about_title: "About Us",
+    about_p1: "Our mission is to simplify and democratize digital advertising for small and medium businesses.",
+    about_p2: "As ReklamAI, we eliminate the need for expensive marketing teams and complex platforms. With advanced AI automation, anyone can create effective ad campaigns that meet global standards.",
+    pricing_title: "Packages for your goals",
+    pricing_desc: "No hidden costs. Choose the plan that fits your needs and start growing.",
+    price_basic_desc: "Perfect for beginners and small text/image ad campaigns.",
+    price_std_desc: "Unlocks high-volume video ad rendering. Ideal for fast-growing businesses.",
+    price_prem_desc: "For marketing agencies needing massive content output and managing multiple clients.",
+    price_btn: "Choose Plan",
+    review_title: "What our customers say?",
+    review_1: '"Thanks to ReklamAI, our team\'s content creation speed increased 3 times. Video generation is especially successful and the prices are very affordable for agencies."',
+    review_1_job: "Marketing Director",
+    review_2: '"I really like the transparency of the credit system. I know exactly what I pay for and can create professional-looking ads even with a small budget."',
+    review_2_job: "Small Business Owner",
+    fb_title: "Share your feedback",
+    fb_desc: "Your opinions are the most important factor in developing our platform.",
+    fb_btn: "Submit Feedback",
+    footer_text: "Digital advertising technologies of the future. The power of AI and the unity of perfect visuals.",
+    footer_links: "Links",
+    footer_legal: "Legal",
+    footer_contact: "Contact Us",
+    login_title: "Login",
+    login_sub: "Continue by logging into the platform",
+    login_btn: "Sign In"
+  },
+  ru: {
+    nav_home: "Главная",
+    nav_about: "О нас",
+    nav_products: "Продукты",
+    nav_pricing: "Цены",
+    nav_contact: "Контакты",
+    nav_login: "Войти",
+    nav_register: "Регистрация",
+    hero_title: "Более выгодная и эффективная реклама <br><span class='text-gradient'>с Искусственным Интеллектом</span>",
+    hero_sub: "Создавайте текстовые, графические и видеообъявления на одной платформе. Полностью управляйте своими расходами.",
+    hero_btn: "Начать сейчас",
+    modules_title: "Полная рекламная экосистема",
+    modules_desc: "От идеи до готового креатива — ИИ делает каждый шаг вместе с вами.",
+    dash_title: "Модуль AI Чат-бота",
+    dash_desc: "Целевая аудитория, рекомендации по бюджету, текст и выбор платформы — за секунды.",
+    dash_user_msg: '"Напиши текст для рекламы в Instagram для ресторана стамбульской кухни."',
+    dash_ai_msg: "Конечно! Вот 3 варианта рекламного текста и предложения по целевой аудитории...",
+    dash_cost: "-1 Кредит",
+    media_img_title: "ИИ Генератор Изображений",
+    media_img_desc: "Создавайте качественные рекламные визуальные эффекты по текстовому описанию.",
+    media_img_cost: "1 Image = 2 Credits",
+    media_vid_title: "ИИ Генератор Видео",
+    media_vid_desc: "Легко создавайте короткие видеорекламы для Tiktok, Reels и Shorts.",
+    media_vid_cost: "1 Video = 10 Credits",
+    mockup_title: "Вершина мобильного опыта",
+    mockup_desc: "Смотрите вживую, как ИИ генерирует видео и фото на вашем телефоне.",
+    mockup_user: "Создай видео для рекламы футуристических часов.",
+    about_title: "О нас",
+    about_p1: "Наша миссия — упростить цифровую рекламу для малого и среднего бизнеса.",
+    about_p2: "ReklamAI устраняет необходимость в дорогих маркетинговых командах и сложных платформах. С помощью продвинутой автоматизации ИИ любой может создавать эффективные кампании.",
+    pricing_title: "Пакеты под ваши цели",
+    pricing_desc: "Никаких скрытых расходов. Выберите план, который вам подходит.",
+    price_basic_desc: "Идеально подходит для новичков и небольших текстовых/графических рекламных кампаний.",
+    price_std_desc: "Открывает высокообъемный рендеринг видео. Идеально для быстрорастущего бизнеса.",
+    price_prem_desc: "Для маркетинговых агентств, нуждающихся в массовом создании контента.",
+    price_btn: "Выбрать план",
+    review_title: "Что говорят клиенты?",
+    review_1: '"Скорость создания контента в нашей команде увеличилась в 3 раза благодаря ReklamAI. Цены очень выгодны для агентств."',
+    review_1_job: "Директор по маркетингу",
+    review_2: '"Мне очень нравится прозрачность кредитной системы. Я точно знаю, за что плачу."',
+    review_2_job: "Владелец малого бизнеса",
+    fb_title: "Оставьте свой отзыв",
+    fb_desc: "Ваше мнение — самый важный фактор развития нашей платформы.",
+    fb_btn: "Отправить отзыв",
+    footer_text: "Цифровые рекламные технологии будущего. Мощь ИИ и единство идеальных визуальных эффектов.",
+    footer_links: "Ссылки",
+    footer_legal: "Правовая информация",
+    footer_contact: "Написать нам",
+    login_title: "Войти",
+    login_sub: "Продолжите, войдя в платформу",
+    login_btn: "Войти"
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const langBtn = document.getElementById('lang-btn');
+  if(!langBtn) return;
+  const langs = ['AZ', 'EN', 'RU'];
+  let currentIdx = 0;
+  
+  langBtn.addEventListener('click', () => {
+    currentIdx = (currentIdx + 1) % langs.length;
+    const nextLang = langs[currentIdx];
+    langBtn.textContent = nextLang;
+    
+    const langKey = nextLang.toLowerCase();
+    document.documentElement.lang = langKey;
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[langKey] && translations[langKey][key]) {
+        if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = translations[langKey][key];
+        } else {
+          el.innerHTML = translations[langKey][key];
+        }
+      }
+    });
+  });
+});
