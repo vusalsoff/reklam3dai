@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ReklamAI - Ödəniş</title>
-  <!-- Reuse global styles -->
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;800&display=swap" rel="stylesheet">
   <style>
-    /* Checkout Specific Styles */
     body {
       background: var(--bg-main);
       color: var(--text-main);
@@ -16,233 +14,170 @@
       display: flex;
       flex-direction: column;
       font-family: 'Inter', sans-serif;
-    }
-    .checkout-nav {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--panel-border);
-      background: var(--panel-bg);
-      backdrop-filter: blur(20px);
-    }
-    .nav-brand {
-      text-decoration: none;
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text-main);
-      font-family: 'Manrope', sans-serif;
-      display: flex;
-      align-items: center;
-    }
-    .checkout-container {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 1000px;
-      margin: 60px auto;
-      gap: 40px;
-      padding: 0 20px;
-      width: 100%;
-    }
-    .summary-col, .payment-col {
-      flex: 1;
-      min-width: 320px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: var(--glass-shadow);
-      backdrop-filter: blur(20px);
-    }
-    .summary-title, .payment-title {
-      font-family: 'Manrope', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 32px;
-      color: var(--text-main);
-    }
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      font-size: 16px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-    .summary-item strong {
-      color: var(--text-main);
-      font-weight: 600;
-    }
-    .summary-total {
-      border-top: 1px solid var(--panel-border);
-      margin-top: 32px;
-      padding-top: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-    .summary-total span:last-child {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--primary);
-      font-family: 'Manrope', sans-serif;
-    }
-    .form-group {
-      margin-bottom: 24px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-    .form-control {
-      width: 100%;
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 1px solid var(--panel-border);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      outline: none;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-    }
-    .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
-    }
-    .row {
-      display: flex;
-      gap: 20px;
-    }
-    .row .form-group {
-      flex: 1;
-    }
-    .btn-pay {
-      width: 100%;
-      padding: 18px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      margin-top: 10px;
-      box-shadow: 0 10px 25px rgba(109, 40, 217, 0.3);
-    }
-    .btn-pay:hover {
-      background: #5b21b6;
-      transform: translateY(-2px);
-    }
-    .secure-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
-      color: var(--text-muted);
-      font-size: 14px;
-      font-weight: 500;
+      overflow-x: hidden;
+      position: relative;
     }
     
-    /* Successful Payment overlay */
-    #success-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 10000;
+    /* Dedicated Checkout Meshes */
+    .checkout-mesh-1, .checkout-mesh-2 {
+      position: absolute; border-radius: 50%; filter: blur(120px); z-index: -1;
+      opacity: 0; pointer-events: none;
     }
-    #success-overlay.active { display: flex; }
-    .success-box {
-      background: var(--panel-bg);
-      padding: 60px 40px; border-radius: 24px; text-align: center;
-      border: 1px solid var(--panel-border);
-      box-shadow: var(--glass-shadow);
-      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .checkout-mesh-1 {
+      width: 800px; height: 800px; background: rgba(124, 58, 237, 0.2);
+      top: -200px; left: -200px; animation: floatMeshC 15s infinite alternate ease-in-out;
     }
-    @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    .checkout-mesh-2 {
+      width: 600px; height: 600px; background: rgba(14, 165, 233, 0.2);
+      bottom: -100px; right: -100px; animation: floatMeshC 12s infinite alternate-reverse ease-in-out;
     }
+    @keyframes floatMeshC {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 80px) scale(1.1); }
+    }
+
+    .checkout-nav {
+      padding: 24px 5%; display: flex; justify-content: space-between; align-items: center;
+      background: transparent; z-index: 10; opacity: 0; transform: translateY(-50px);
+    }
+    .nav-brand {
+      text-decoration: none; font-size: 26px; font-weight: 800; color: var(--text-main);
+      font-family: 'Manrope', sans-serif; display: flex; align-items: center;
+      text-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+    }
+    
+    .checkout-container {
+      display: flex; flex-wrap: wrap; max-width: 1100px; margin: 40px auto; gap: 60px; padding: 0 5%; width: 100%; z-index: 1;
+    }
+    .summary-col, .payment-col {
+      flex: 1; min-width: 320px;
+    }
+    
+    /* Left Column UI */
+    .summary-col { opacity: 0; }
+    .summary-title { font-family: 'Manrope', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 40px; background: var(--text-gradient); -webkit-background-clip: text; color: transparent; }
+    
+    .premium-card-mockup {
+      width: 100%; height: 220px; border-radius: 20px; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+      padding: 24px 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
+      margin-bottom: 40px; transform-style: preserve-3d; transition: transform 0.2s ease-out, box-shadow 0.4s ease;
+    }
+    .premium-card-mockup::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(124, 58, 237, 0.2) 0%, transparent 60%);
+      transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.5s; pointer-events: none;
+    }
+    .premium-card-mockup:hover::before { opacity: 1; }
+    
+    .card-chip { width: 45px; height: 35px; background: linear-gradient(135deg, #facc15, #a16207); border-radius: 6px; box-shadow: inset 0 0 5px rgba(0,0,0,0.5); }
+    .card-num-display { font-size: 24px; font-family: monospace; letter-spacing: 3px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin-top: auto; margin-bottom: 20px;}
+    .card-btm { display: flex; justify-content: space-between; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .summary-item { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 16px; color: var(--text-muted); font-weight: 500; }
+    .summary-item strong { color: var(--text-main); font-weight: 600; font-size: 18px; }
+    .summary-total { border-top: 1px solid var(--panel-border); margin-top: 32px; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: 600; color: var(--text-main); }
+    .summary-total span:last-child { font-size: 40px; font-weight: 800; color: var(--primary); font-family: 'Manrope', sans-serif; text-shadow: 0 4px 20px rgba(124,58,237,0.3); }
+    
+    /* Right Column UI */
+    .payment-col { background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 32px; padding: 48px; box-shadow: var(--glass-shadow); backdrop-filter: blur(30px); opacity: 0; position: relative; overflow: hidden; }
+    .payment-title { font-family: 'Manrope', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 32px; color: var(--text-main); }
+    
+    .form-group { margin-bottom: 24px; position: relative; }
+    .form-group label { display: block; margin-bottom: 10px; font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .form-control { width: 100%; padding: 18px 20px; border-radius: 16px; border: 2px solid var(--panel-border); background: rgba(255, 255, 255, 0.02); color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; outline: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-sizing: border-box; }
+    .form-control:focus { border-color: var(--primary); background: rgba(124, 58, 237, 0.04); box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15); transform: translateY(-3px); }
+    
+    .row { display: flex; gap: 20px; }
+    .row .form-group { flex: 1; }
+    
+    .btn-pay { width: 100%; padding: 22px; background: var(--text-gradient); color: white; border: none; border-radius: 16px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 10px; box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4); position: relative; overflow: hidden; }
+    .btn-pay::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent); transform: skewX(-20deg); transition: 0.6s; }
+    .btn-pay:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 25px 45px rgba(124, 58, 237, 0.6); }
+    .btn-pay:hover::after { left: 150%; }
+    
+    .secure-badge { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; color: var(--text-muted); font-size: 14px; font-weight: 600; }
+    
+    /* Overlay */
+    #success-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(11,15,25,0.85); backdrop-filter: blur(24px); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; opacity: 0; transition: opacity 0.5s; }
+    #success-overlay.active { display: flex; opacity: 1; }
+    .success-box { background: var(--panel-bg); padding: 60px 40px; border-radius: 32px; text-align: center; border: 1px solid rgba(124,58,237,0.3); box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1); max-width: 450px; transform: scale(0.8) translateY(40px); opacity: 0; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; align-items: center; }
+    #success-overlay.active .success-box { transform: scale(1) translateY(0); opacity: 1; }
+    
+    /* Form Stagger Init */
+    .stagger-item, .stagger-item-l { opacity: 0; transform: translateY(20px); }
   </style>
 </head>
-<body>
+<body class="dark-theme">
 
-  <!-- Navigation -->
+  <div class="checkout-mesh-1"></div>
+  <div class="checkout-mesh-2"></div>
+
   <nav class="checkout-nav">
     <a href="index.html" class="nav-brand">
-      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" style="vertical-align: middle; margin-right:8px;">
+      <svg width="36" height="36" viewBox="0 0 48 48" fill="none" style="margin-right:12px;">
         <circle cx="24" cy="24" r="24" fill="var(--primary)" opacity="0.2"/>
         <path d="M14 24 L24 14 V34 Z" fill="var(--primary)" />
-        <path d="M24 14 L34 24 L24 34" stroke="var(--secondary)" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M24 14 L34 24 L24 34" stroke="var(--accent)" stroke-width="4" stroke-linejoin="round"/>
       </svg>
       ReklamAI
     </a>
   </nav>
 
   <div class="checkout-container">
-    <!-- Left: Order Summary -->
+    <!-- Left Column -->
     <div class="summary-col">
-      <h2 class="summary-title" data-i18n="checkoutSummary">Sifarişin Xülasəsi</h2>
+      <h2 class="summary-title stagger-item-l" data-i18n="checkoutSummary">Sifarişin Xülasəsi</h2>
       
-      <div class="summary-item">
+      <div class="premium-card-mockup stagger-item-l" id="card-mockup">
+        <div class="card-chip"></div>
+        <div class="card-num-display" id="mock-num">**** **** **** ****</div>
+        <div class="card-btm">
+          <span id="mock-name">AD SOYAD</span>
+          <span id="mock-exp">MM/YY</span>
+        </div>
+      </div>
+      
+      <div class="summary-item stagger-item-l">
         <span data-i18n="checkoutPlanName">Seçilmiş Plan:</span>
         <strong id="plan-name-display">Basic Plan</strong>
       </div>
-      
-      <div class="summary-item">
+      <div class="summary-item stagger-item-l">
         <span data-i18n="navFeatures">Xüsusiyyətlər:</span>
         <strong id="plan-features-display">300 AI Krediti</strong>
       </div>
-
-      <div class="summary-total">
+      <div class="summary-total stagger-item-l">
         <span data-i18n="checkoutTotal">Yekun Məbləğ:</span>
         <span id="plan-price-display">29 AZN</span>
       </div>
     </div>
 
-    <!-- Right: Payment Form -->
+    <!-- Right Column -->
     <div class="payment-col">
-      <h2 class="payment-title" data-i18n="checkoutPayment">Ödəniş Məlumatları</h2>
-      
+      <h2 class="payment-title stagger-item" data-i18n="checkoutPayment">Ödəniş Məlumatları</h2>
       <form id="payment-form" onsubmit="handlePayment(event)">
-        <div class="form-group">
+        <div class="form-group stagger-item">
           <label data-i18n="checkoutCardName">Kart Üzərindəki Ad</label>
-          <input type="text" class="form-control" placeholder="Ad Soyad" required>
+          <input type="text" class="form-control" id="in-name" placeholder="Ad Soyad" required>
         </div>
-        
-        <div class="form-group">
+        <div class="form-group stagger-item">
           <label data-i18n="checkoutCardNum">Kartın Nömrəsi</label>
-          <input type="text" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" required>
+          <input type="text" class="form-control" id="in-num" placeholder="0000 0000 0000 0000" maxlength="19" required>
         </div>
-        
-        <div class="row">
+        <div class="row stagger-item">
           <div class="form-group">
             <label data-i18n="checkoutExpiry">Bitmə Tarixi (MM/YY)</label>
-            <input type="text" class="form-control" placeholder="12/26" maxlength="5" required>
+            <input type="text" class="form-control" id="in-exp" placeholder="12/26" maxlength="5" required>
           </div>
           <div class="form-group">
             <label data-i18n="checkoutCvc">CVC</label>
             <input type="text" class="form-control" placeholder="123" maxlength="3" required>
           </div>
         </div>
-
-        <button type="submit" class="btn-pay" data-i18n="checkoutPayBtn">Ödənişi Təsdiqlə</button>
-        
-        <div class="secure-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <button type="submit" class="btn-pay stagger-item" data-i18n="checkoutPayBtn">Ödənişi Təsdiqlə</button>
+        <div class="secure-badge stagger-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <span data-i18n="checkoutSecure">100% Təhlükəsiz Ödəniş (256-bit SSL)</span>
         </div>
       </form>
@@ -251,105 +186,118 @@
 
   <div id="success-overlay">
     <div class="success-box">
-      <div style="width:80px; height:80px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; margin-bottom:24px; box-shadow: 0 10px 25px rgba(109, 40, 217, 0.4);">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <div style="width:90px; height:90px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; margin-bottom:30px; box-shadow: 0 15px 35px rgba(124, 58, 237, 0.5);">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
       </div>
-      <h3 style="font-size:24px; color:var(--text-main); margin-bottom:24px; font-family:'Manrope';" data-i18n="checkoutSuccess">Ödəniş uğurla tamamlandı! Xidmətiniz aktivləşdirildi.</h3>
-      <button class="btn btn-ghost" onclick="window.location.href='index.html'" data-i18n="navHome">Ana Səhifə</button>
+      <h3 style="font-size:26px; font-weight:800; color:var(--text-main); margin-bottom:24px; font-family:'Manrope';" data-i18n="checkoutSuccess">Ödəniş uğurla tamamlandı! Xidmətiniz aktivləşdirildi.</h3>
+      <button class="btn btn-ghost" style="padding:16px 36px; border-color:var(--primary); color:var(--text-main); font-weight:700;" onclick="window.location.href='index.html'" data-i18n="navHome">Ana Səhifə</button>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="js/translations.js"></script>
   <script>
-    // Animations using GSAP
-    gsap.from(".summary-col", { duration: 1, x: -50, opacity: 0, ease: "expo.out", delay: 0.2 });
-    gsap.from(".payment-col", { duration: 1, x: 50, opacity: 0, ease: "expo.out", delay: 0.4 });
-    gsap.from(".checkout-nav", { duration: 1, y: -50, opacity: 0, ease: "expo.out" });
-
-    // Initialize Dark Theme based on localStorage
-    if (localStorage.getItem('theme') === 'dark') {
+    // Theme setup based on index.html
+    if (localStorage.getItem('theme') !== 'light') {
       document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
     }
 
-    // Handle Translations
+    // GSAP Timeline Entry Animations (Cinematic)
+    const tl = gsap.timeline();
+    tl.to(".checkout-nav", { opacity: 1, y: 0, duration: 1.2, ease: "expo.out", delay: 0.2 })
+      .to(".checkout-mesh-1, .checkout-mesh-2", { opacity: 1, duration: 2, ease: "power2.inOut" }, "-=1")
+      .to(".summary-col", { opacity: 1, duration: 1 }, "-=1.5")
+      .fromTo(".stagger-item-l", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.1, ease: "expo.out" }, "-=1")
+      .to(".payment-col", { opacity: 1, duration: 1 }, "-=1.2")
+      .to(".stagger-item", { opacity: 1, y: 0, duration: 1.2, stagger: 0.1, ease: "expo.out" }, "-=1");
+
+    // Translations
     const lang = localStorage.getItem('lang') || 'az';
     if(translations && translations[lang]) {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
+        if(translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       document.documentElement.lang = lang;
     }
 
-    // Handle URL Parameters
+    // URL Parsing
     const urlParams = new URLSearchParams(window.location.search);
     const plan = urlParams.get('plan');
-    
     const planNameEl = document.getElementById('plan-name-display');
     const planFeaturesEl = document.getElementById('plan-features-display');
     const planPriceEl = document.getElementById('plan-price-display');
 
+    let finalPrice = 29;
     if(plan === 'standard') {
       planNameEl.textContent = 'Standard Plan';
-      planFeaturesEl.textContent = translations[lang] ? translations[lang].planCreditsStandard || '1000 AI Krediti' : '1000 AI Krediti';
-      planPriceEl.textContent = '59 AZN';
+      planFeaturesEl.textContent = translations[lang]?.planCreditsStandard || '1000 AI Krediti';
+      finalPrice = 59;
     } else if(plan === 'premium') {
       planNameEl.textContent = 'Premium Plan';
-      planFeaturesEl.textContent = translations[lang] ? translations[lang].planCreditsPremium || '2000 AI Krediti' : '2000 AI Krediti';
-      planPriceEl.textContent = '99 AZN';
+      planFeaturesEl.textContent = translations[lang]?.planCreditsPremium || '2000 AI Krediti';
+      finalPrice = 99;
     } else {
       planNameEl.textContent = 'Basic Plan';
-      planFeaturesEl.textContent = translations[lang] ? translations[lang].planCreditsBasic || '300 AI Krediti' : '300 AI Krediti';
-      planPriceEl.textContent = '29 AZN';
+      planFeaturesEl.textContent = translations[lang]?.planCreditsBasic || '300 AI Krediti';
+      finalPrice = 29;
     }
 
-    // Input Formatting (Basic)
-    const cardInput = document.querySelectorAll('.form-control')[1];
-    cardInput.addEventListener('input', function (e) {
-      this.value = this.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+    // Number Counter Animation for Price
+    gsap.fromTo(planPriceEl, { innerHTML: 0 }, { innerHTML: finalPrice, duration: 2.5, ease: "expo.out", snap: { innerHTML: 1 }, onUpdate: function() {
+      planPriceEl.innerHTML = this.targets()[0].innerHTML + " AZN";
+    }, delay: 0.8 });
+
+    // Form Interactions (Syncing inputs to the glass card mockup)
+    const mockup = document.getElementById('card-mockup');
+    const inName = document.getElementById('in-name');
+    const inNum = document.getElementById('in-num');
+    const inExp = document.getElementById('in-exp');
+    
+    document.querySelectorAll('.form-control').forEach(el => {
+      el.addEventListener('focus', () => {
+        mockup.style.boxShadow = '0 30px 60px rgba(124, 58, 237, 0.5), inset 0 1px 0 rgba(255,255,255,0.4)';
+        mockup.style.borderColor = 'rgba(124, 58, 237, 0.4)';
+      });
+      el.addEventListener('blur', () => {
+        mockup.style.boxShadow = '0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2)';
+        mockup.style.borderColor = 'rgba(255,255,255,0.15)';
+      });
     });
 
-    const expiryInput = document.querySelectorAll('.form-control')[2];
-    expiryInput.addEventListener('input', function (e) {
-      let v = this.value.replace(/\D/g, '');
-      if (v.length >= 2) {
-        v = v.substring(0, 2) + '/' + v.substring(2, 4);
-      }
-      this.value = v;
+    inName.addEventListener('input', e => document.getElementById('mock-name').textContent = e.target.value.toUpperCase() || 'AD SOYAD');
+    inNum.addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+      e.target.value = v;
+      document.getElementById('mock-num').textContent = v || '**** **** **** ****';
+    });
+    inExp.addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2, 4);
+      e.target.value = v;
+      document.getElementById('mock-exp').textContent = v || 'MM/YY';
     });
 
-    // Fake Payment Handling
+    // 3D Mouse Tracking for Card Mockup
+    const leftCol = document.querySelector('.summary-col');
+    leftCol.addEventListener('mousemove', e => {
+      const rect = mockup.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      mockup.style.transform = `perspective(1000px) rotateX(${-y/15}deg) rotateY(${x/15}deg) scale3d(1.03, 1.03, 1.03)`;
+    });
+    leftCol.addEventListener('mouseleave', () => {
+      mockup.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+
+    // Payment Logic
     function handlePayment(e) {
       e.preventDefault();
       document.getElementById('success-overlay').classList.add('active');
     }
-
-    // 3D Tilt for columns
-    const tiltCols = document.querySelectorAll('.summary-col, .payment-col');
-    tiltCols.forEach(el => {
-      el.addEventListener('mousemove', e => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5; // max 5 deg tilt
-        const rotateY = ((x - centerX) / centerX) * 5;
-        
-        el.style.transform = `perspective(1500px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        el.style.transition = 'none';
-        el.style.boxShadow = '0 30px 60px rgba(124, 58, 237, 0.2)';
-      });
-
-      el.addEventListener('mouseleave', () => {
-        el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-        el.style.transform = `perspective(1500px) scale(1) rotateX(0deg) rotateY(0deg)`;
-        el.style.boxShadow = 'var(--glass-shadow)';
-      });
-    });
   </script>
 </body>
 </html>
