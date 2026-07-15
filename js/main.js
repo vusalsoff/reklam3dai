@@ -50,16 +50,16 @@ gsap.to('#waving-img', {
   repeat: -1
 });
 
-// 2. Global Section Reveals (her section animation ile acilsin)
+// 2. Global Section Reveals (Ultra Smooth)
 const revealElements = document.querySelectorAll('.section-content');
 revealElements.forEach((el) => {
   gsap.fromTo(el, 
-    { autoAlpha: 0, y: 60 },
+    { autoAlpha: 0, y: 80 },
     {
       autoAlpha: 1, 
       y: 0,
-      duration: 1,
-      ease: "power3.out",
+      duration: 1.4,
+      ease: "expo.out",
       scrollTrigger: {
         trigger: el,
         start: "top 85%",
@@ -129,7 +129,7 @@ tlSim.add(() => {
   // Create and append bot message with image
   const botMsg = document.createElement('div');
   botMsg.className = 'flat-msg bot';
-  botMsg.innerHTML = "Budur, istədiyiniz 3D qırmızı idman ayaqqabısı: <img src='assets/ai_generated_sneaker.jpg' class='bot-img-reply' alt='Red Sneaker'>";
+  botMsg.innerHTML = `<span data-i18n="botReplyText">${translations[currentLang].botReplyText || "Budur, istədiyiniz 3D qırmızı idman ayaqqabısı:"}</span> <img src='assets/ai_generated_sneaker.jpg' class='bot-img-reply' alt='Red Sneaker'>`;
   thread.appendChild(botMsg);
   
   // Animate bot message
@@ -220,8 +220,12 @@ function updateLanguage(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang][key]) {
-      // Use innerHTML to parse <br> tags properly
-      el.innerHTML = translations[lang][key];
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.setAttribute('placeholder', translations[lang][key]);
+      } else {
+        // Use innerHTML to parse <br> tags properly
+        el.innerHTML = translations[lang][key];
+      }
     }
   });
 
@@ -270,3 +274,32 @@ window.showLoader = function(url) {
   }
 };
 
+// ==========================================
+// Ultra-Premium 3D Tilt Effect
+// ==========================================
+const tiltElements = document.querySelectorAll('.price-card, .service-card, .glass, .rm-content');
+
+tiltElements.forEach(el => {
+  el.addEventListener('mousemove', e => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left; // x position within the element
+    const y = e.clientY - rect.top;  // y position within the element
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Calculate rotation limits (max 10 degrees)
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    // Apply the transform
+    el.style.transform = `perspective(1000px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    el.style.transition = 'none'; // remove transition for smooth tracking
+  });
+
+  el.addEventListener('mouseleave', () => {
+    // Reset the transform smoothly
+    el.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+    el.style.transform = `perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+  });
+});

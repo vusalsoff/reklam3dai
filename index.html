@@ -6,21 +6,33 @@
   <title>ReklamAI — Premium 3D Marketing Platform</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="light-theme">
 
-  <!-- Full Screen Loader Overlay -->
-  <div id="global-loader">
-    <div class="loader-caricatures">
-      <img src="assets/waving_ai_assistant.png" alt="Waving AI" class="loader-img loader-bounce-1">
-      <img src="assets/suit_ai_assistant.png" alt="Suit AI" class="loader-img loader-bounce-2">
-      <img src="assets/wizard_ai_assistant.png" alt="Wizard AI" class="loader-img loader-bounce-3">
+  <!-- Premium Background Meshes -->
+  <div class="mesh-bg mesh-bg-1"></div>
+  <div class="mesh-bg mesh-bg-2"></div>
+
+  <!-- Premium Global Loader -->
+  <div id="global-loader" class="ultra-loader">
+    <div class="loader-bg-glow"></div>
+    <div class="loader-content">
+      <div class="loader-logo">
+        <svg width="64" height="64" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="24" fill="var(--primary)" opacity="0.15"/>
+          <path d="M14 24 L24 14 V34 Z" fill="var(--primary)" />
+          <path d="M24 14 L34 24 L24 34" stroke="var(--secondary)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="loader-brand">ReklamAI</h2>
+      <div class="loader-progress-wrapper">
+        <div class="loader-progress-bar"></div>
+      </div>
+      <div class="loader-text" data-i18n="loadingText">Yüklənir... Zəhmət olmasa gözləyin</div>
     </div>
-    <div class="loader-spinner" style="margin-top:20px;"></div>
-    <div class="loader-text">Yüklənir... Zəhmət olmasa gözləyin</div>
   </div>
 
   <!-- Professional Navbar -->
-  <nav class="navbar glass">
+  <nav class="navbar">
     <a href="#home" class="nav-brand">
       <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
         <circle cx="24" cy="24" r="24" fill="var(--primary)" opacity="0.1"/>
@@ -32,7 +44,7 @@
 
     <div class="nav-menu" id="nav-menu">
       <div class="nav-links">
-        <a href="#home">Ana Səhifə</a>
+        <a href="#home" data-i18n="navHome">Ana Səhifə</a>
         <a href="#features" data-i18n="navFeatures">Üstünlüklər</a>
         <a href="#roadmap" data-i18n="navHow">Necə İşləyir</a>
         <a href="#pricing" data-i18n="navPricing">Qiymətlər</a>
@@ -71,12 +83,15 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <!-- Futuristic AI Circuit Animation Background -->
     <canvas id="circuit-canvas"></canvas>
     
     <div class="hero-content">
-      <h1 class="title-xl"><span data-i18n="heroTitlePrefix">Süni intellektlə</span> <br><span class="text-gradient" data-i18n="heroTitleMain">Reklamın<br>Gələcəyi</span></h1>
+      <h1 class="title-xl text-gradient">
+        <span data-i18n="heroTitleTop">Süni İntellektlə</span><br/>
+        <span data-i18n="heroTitleBottom">Reklamın Gələcəyi</span>
+      </h1>
       <p class="text-lead" data-i18n="heroSubtitle">Saniyələr içində kampaniyalar yaradın, xərclərinizi optimallaşdırın və satışlarınızı 3 qat artırın. Bütün idarəetmə artıq çox asan.</p>
       
       <div class="hero-cta">
@@ -152,7 +167,7 @@
   <!-- Linear Roadmap Section -->
   <section class="section section-content" id="roadmap">
     <div class="section-header">
-      <h2 class="title-lg" data-i18n="roadTitle">Sistem Necə İşləyir?</h2>
+      <h2 class="title-lg text-gradient" data-i18n="roadTitle">Sistem Necə İşləyir?</h2>
       <p class="text-lead" data-i18n="roadSubtitle">Sadəcə 3 addımla mükəmməl reklamı ərsəyə gətirin.</p>
     </div>
     
@@ -187,38 +202,38 @@
   <!-- Pricing -->
   <section class="section section-content" id="pricing">
     <div class="section-header">
-      <h2 class="title-lg">Məqsədinizə Uyğun Paket</h2>
-      <p class="text-lead">Gizli xərclər yoxdur. Ehtiyacınıza uyğun olan planı seçin və böyüməyə başlayın.</p>
+      <h2 class="title-lg text-gradient" data-i18n="pricingTitle">Məqsədinizə Uyğun Paket</h2>
+      <p class="text-lead" data-i18n="pricingSubtitle">Gizli xərclər yoxdur. Ehtiyacınıza uyğun olan planı seçin və böyüməyə başlayın.</p>
     </div>
 
     <div class="pricing-grid">
       <!-- Basic -->
       <div class="price-card">
         <h3 class="plan-name">Basic</h3>
-        <div class="plan-price">29 <span>AZN / ay</span></div>
-        <div class="plan-credits">300 AI Krediti</div>
-        <p class="plan-desc" style="flex:1;">Yeni başlayanlar və kiçik həcmli mətn/şəkil reklam kampaniyaları üçün mükəmməl seçimdir.</p>
-        <button class="btn btn-ghost">Planı Seç</button>
+        <div class="plan-price">29 <span data-i18n="perMonth">AZN / ay</span></div>
+        <div class="plan-credits" data-i18n="planCreditsBasic">300 AI Krediti</div>
+        <p class="plan-desc" style="flex:1;" data-i18n="planBasicDesc">Yeni başlayanlar və kiçik həcmli mətn/şəkil reklam kampaniyaları üçün mükəmməl seçimdir.</p>
+        <button class="btn btn-ghost" data-i18n="btnSelect" onclick="window.location.href='checkout.html?plan=basic'">Planı Seç</button>
       </div>
       <!-- Standard -->
       <div class="price-card popular">
         <!-- Sitting Caricature (Transparent PNG) -->
         <img src="assets/sitting_ai_assistant.png" alt="AI Assistant Sitting" class="sitting-ai">
         
-        <div class="badge-popular">Ən Çox Seçilən</div>
+        <div class="badge-popular" data-i18n="popularBadge">Ən Çox Seçilən</div>
         <h3 class="plan-name">Standard</h3>
-        <div class="plan-price">59 <span>AZN / ay</span></div>
-        <div class="plan-credits">1000 AI Krediti</div>
-        <p class="plan-desc" style="flex:1;">Yüksək həcmli video reklam istehsalını açır. Sürətlə böyüyən bizneslər üçün ideal.</p>
-        <button class="btn btn-primary">Planı Seç</button>
+        <div class="plan-price">59 <span data-i18n="perMonth">AZN / ay</span></div>
+        <div class="plan-credits" data-i18n="planCreditsStandard">1000 AI Krediti</div>
+        <p class="plan-desc" style="flex:1;" data-i18n="planStandardDesc">Yüksək həcmli video reklam istehsalını açır. Sürətlə böyüyən bizneslər üçün ideal.</p>
+        <button class="btn btn-primary" data-i18n="btnSelect" onclick="window.location.href='checkout.html?plan=standard'">Planı Seç</button>
       </div>
       <!-- Premium -->
       <div class="price-card">
         <h3 class="plan-name">Premium</h3>
-        <div class="plan-price">99 <span>AZN / ay</span></div>
-        <div class="plan-credits">2000 AI Krediti</div>
-        <p class="plan-desc" style="flex:1;">Kütləvi məzmun istehsalı və bir neçə müştəri idarə edən marketinq agentlikləri üçün.</p>
-        <button class="btn btn-ghost">Planı Seç</button>
+        <div class="plan-price">99 <span data-i18n="perMonth">AZN / ay</span></div>
+        <div class="plan-credits" data-i18n="planCreditsPremium">2000 AI Krediti</div>
+        <p class="plan-desc" style="flex:1;" data-i18n="planPremiumDesc">Kütləvi məzmun istehsalı və bir neçə müştəri idarə edən marketinq agentlikləri üçün.</p>
+        <button class="btn btn-ghost" data-i18n="btnSelect" onclick="window.location.href='checkout.html?plan=premium'">Planı Seç</button>
       </div>
     </div>
   </section>
@@ -236,7 +251,7 @@
       </div>
       <!-- Right side: Form -->
       <div style="padding: 40px; display:flex; flex-direction:column; justify-content:center;">
-        <h4 style="font-size:24px; color:var(--secondary); font-family:'Manrope', sans-serif; margin-bottom: 24px;">Bakı Ofisi / Bizə Yazın</h4>
+        <h4 style="font-size:24px; color:var(--secondary); font-family:'Manrope', sans-serif; margin-bottom: 24px;" data-i18n="contactFormTitle">Bakı Ofisi / Bizə Yazın</h4>
         <form id="contact-form" onsubmit="event.preventDefault();" style="display:flex; flex-direction:column; gap:16px;">
           <input type="text" placeholder="Adınız" data-i18n="formName" style="padding:16px; border-radius:12px; border:1px solid var(--panel-border); background:transparent; color:var(--text-main); font-family:'Inter'; font-size:15px; outline:none;">
           <input type="email" placeholder="Email ünvanı" data-i18n="formEmail" style="padding:16px; border-radius:12px; border:1px solid var(--panel-border); background:transparent; color:var(--text-main); font-family:'Inter'; font-size:15px; outline:none;">
@@ -254,34 +269,34 @@
         <a href="#home" class="nav-brand" style="margin-bottom: 24px;">
           ReklamAI
         </a>
-        <p style="color: var(--text-muted); font-size: 16px; max-width: 280px; line-height:1.6;">
+        <p style="color: var(--text-muted); font-size: 16px; max-width: 280px; line-height:1.6;" data-i18n="footerDesc">
           Gələcəyin rəqəmsal reklam texnologiyaları. Süni intellektin gücü və mükəmməl təmiz vizuallığın vəhdəti.
         </p>
       </div>
       <div class="f-col">
-        <h4>Platforma</h4>
+        <h4 data-i18n="footerPlatform">Platforma</h4>
         <div class="f-links">
-          <a href="#home">Ana Səhifə</a>
-          <a href="#features">Üstünlüklər</a>
-          <a href="#pricing">Qiymətlər</a>
+          <a href="#home" data-i18n="navHome">Ana Səhifə</a>
+          <a href="#features" data-i18n="navFeatures">Üstünlüklər</a>
+          <a href="#pricing" data-i18n="navPricing">Qiymətlər</a>
         </div>
       </div>
       <div class="f-col">
-        <h4>Hüquqi</h4>
+        <h4 data-i18n="footerLegal">Hüquqi</h4>
         <div class="f-links">
-          <a href="#">Məxfilik siyasəti</a>
-          <a href="#">İstifadə şərtləri</a>
+          <a href="#" data-i18n="footerPrivacy">Məxfilik siyasəti</a>
+          <a href="#" data-i18n="footerTerms">İstifadə şərtləri</a>
         </div>
       </div>
       <div class="f-col">
-        <h4>Əlaqə</h4>
+        <h4 data-i18n="footerContact">Əlaqə</h4>
         <div class="f-links">
           <span style="font-weight:700; color:var(--primary); font-size:18px;">hello@reklamai.az</span>
           <span style="font-weight:700; color:var(--text-main); font-size:18px;">+994 50 000 00 00</span>
         </div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:80px; padding-top:40px; border-top:1px solid var(--panel-border); font-size:15px; color:var(--text-muted); font-weight:500;">
+    <div style="text-align:center; margin-top:80px; padding-top:40px; border-top:1px solid var(--panel-border); font-size:15px; color:var(--text-muted); font-weight:500;" data-i18n="footerRights">
       © 2026 ReklamAI Marketing Agency. Bütün hüquqlar qorunur.
     </div>
   </footer>
